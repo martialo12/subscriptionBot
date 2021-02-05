@@ -14,6 +14,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 from helper.timer import timer
+import pandas as pd
 
 PATH_TO_DOWNLOAD_FOLDER = os.path.join(os.getcwd(), "download")
 
@@ -40,6 +41,8 @@ class SysthagLib(ABC):
         self.pre_registration_step_4(browser)
         self.pre_registration_step_5(browser, personal_information)
         self.pre_registration_step_6(browser, personal_information)
+        self.pre_registration_step_7(browser)
+        self.extract_table(browser)
 
     # These operations already have implementations.
 
@@ -222,24 +225,17 @@ class SysthagLib(ABC):
         btn_next.click()
         sleep(60)
 
+    def pre_registration_step_7(self, browser) -> None:
+        logging.info('preregistration page STEP7: Validation...')
+        sleep(4)
+
+        logging.info('Saving profile...')
+        save_profile = browser.find_element_by_id('save')
+        save_profile.click()
+        sleep(6)
 
     # These operations have to be implemented in subclasses.
 
-    # @abstractmethod
-    # def required_operations1(self) -> None:
-    #     pass
-    #
-    # @abstractmethod
-    # def required_operations2(self) -> None:
-    #     pass
-
-    # These are "hooks." Subclasses may override them, but it's not mandatory
-    # since the hooks already have default (but empty) implementation. Hooks
-    # provide additional extension points in some crucial places of the
-    # algorithm.
-
-    # def hook1(self) -> None:
-    #     pass
-    #
-    # def hook2(self) -> None:
-    #     pass
+    @abstractmethod
+    def extract_table(self, browser) -> None:
+        pass
