@@ -139,10 +139,21 @@ class SysthagLib(ABC):
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
-        sleep(60)
 
     def pre_registration_step_3(self, browser):
         logging.info('preregistration page STEP3: Education...')
+        sleep(4)
+
+        select = Select(browser.find_element_by_id('cycle'))
+        select.select_by_visible_text('Master')
+
+        select = Select(browser.find_element_by_id('formation1'))
+        select.select_by_visible_text('LABORATOIRE ENERGIE, MATERIAUX, MODELISATION ET METHODES (LE3M)')
+
+        btn_next = browser.find_element_by_id('boutNext')
+        btn_next.click()
+        sleep(60)
+
     # These operations have to be implemented in subclasses.
 
     # @abstractmethod
