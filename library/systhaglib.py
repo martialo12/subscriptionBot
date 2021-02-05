@@ -15,6 +15,7 @@ from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 from helper.timer import timer
 import pandas as pd
+from typing import Dict
 
 PATH_TO_DOWNLOAD_FOLDER = os.path.join(os.getcwd(), "download")
 
@@ -42,7 +43,8 @@ class SysthagLib(ABC):
         self.pre_registration_step_5(browser, personal_information)
         self.pre_registration_step_6(browser, personal_information)
         self.pre_registration_step_7(browser)
-        self.extract_table(browser)
+        credentials = self.extract_table(browser)
+        self.login(browser, credentials)
 
     # These operations already have implementations.
 
@@ -159,8 +161,10 @@ class SysthagLib(ABC):
         select_year = Select(browser.find_element_by_id('anneeObten'))
         select_year.select_by_visible_text('2020')
 
-        select_major = browser.find_element_by_xpath("//select/option[@value='LABLE3M']")
-        select_major.click()
+        # select_major = browser.find_element_by_xpath("//select/option[@value='LABLE3M']")
+        select_major = Select(browser.find_element_by_id('formation1'))
+        select_major.select_by_visible_text('LABORATOIRE ENERGIE, MATERIAUX, MODELISATION ET METHODES (LE3M)')
+        # select_major.click()
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
@@ -223,7 +227,6 @@ class SysthagLib(ABC):
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
-        sleep(60)
 
     def pre_registration_step_7(self, browser) -> None:
         logging.info('preregistration page STEP7: Validation...')
@@ -237,5 +240,9 @@ class SysthagLib(ABC):
     # These operations have to be implemented in subclasses.
 
     @abstractmethod
-    def extract_table(self, browser) -> None:
+    def extract_table(self, browser) -> Dict[str, str]:
+        pass
+
+    @abstractmethod
+    def login(self, browser, credentials) -> None:
         pass
