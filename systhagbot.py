@@ -49,15 +49,21 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     personal_information = ''
-    if args.config:
-        config = yaml.load(args.config, Loader=yaml.FullLoader)
-        # getting value from config file
-        personal_information = config['PERSONAL_INFORMATION']
-    # args.username
-    print("Same client code can work with different subclasses:")
-    client_code(
-        sythagBot=SythagBot(),
-        execution=args.execution,
-        personal_information=personal_information
-    )
-    print("")
+
+    try:
+        if args.config:
+            config = yaml.load(args.config, Loader=yaml.FullLoader)
+            # getting value from config file
+            personal_information = config['PERSONAL_INFORMATION']
+
+        client_code(
+            sythagBot=SythagBot(),
+            execution=args.execution,
+            personal_information=personal_information
+        )
+    except Exception as e:
+        logging.error(f'something went wrong while scraping data from SYSTHAG portal: {e}')
+
+    logging.info('end systhag bot\'s execution.')
+
+

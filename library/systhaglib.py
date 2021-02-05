@@ -144,11 +144,17 @@ class SysthagLib(ABC):
         logging.info('preregistration page STEP3: Education...')
         sleep(4)
 
-        select = Select(browser.find_element_by_id('cycle'))
-        select.select_by_visible_text('Master')
+        select_cycle = Select(browser.find_element_by_id('cycle'))
+        select_cycle.select_by_visible_text('Master')
 
-        select = Select(browser.find_element_by_id('formation1'))
-        select.select_by_visible_text('LABORATOIRE ENERGIE, MATERIAUX, MODELISATION ET METHODES (LE3M)')
+        select_diploma = Select(browser.find_element_by_id('dipAdmin'))
+        select_diploma.select_by_visible_text('Licence')
+
+        select_year = Select(browser.find_element_by_id('anneeObten'))
+        select_year.select_by_visible_text('2020')
+
+        select_major = browser.find_element_by_xpath("//select/option[@value='LABLE3M']")
+        select_major.click()
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
