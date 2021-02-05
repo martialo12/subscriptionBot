@@ -25,7 +25,7 @@ logger = logging.getLogger('sythagBot')
 from library.systhaglib import SysthagLib
 
 
-class SythagBot(SysthagLib):
+class PreregistrationPolytechDoualaBot(SysthagLib):
     """
     Concrete classes have to implement all abstract operations of the base
     class. They can also override some operations with a default implementation.
@@ -134,7 +134,7 @@ if __name__ == "__main__":
             personal_information = config['PERSONAL_INFORMATION']
 
         client_code(
-            sythagBot=SythagBot(),
+            sythagBot=PreregistrationPolytechDoualaBot(),
             execution=args.execution,
             personal_information=personal_information
         )
