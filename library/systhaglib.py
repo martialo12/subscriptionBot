@@ -167,7 +167,6 @@ class SysthagLib(ABC):
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
-        sleep(60)
 
     def pre_registration_step_5(self, browser, personal_information) -> None:
         logging.info('preregistration page STEP5: Physical abilities...')
