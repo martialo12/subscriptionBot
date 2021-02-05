@@ -190,6 +190,41 @@ class SysthagLib(ABC):
         sleep(60)
 
 
+
+    def pre_registration_step_6(self, browser, personal_information) -> None:
+        logging.info('preregistration page STEP6: Parents...')
+        sleep(4)
+
+        father_fullname = str(personal_information['father_fullname'])
+        father_phone_number = str(personal_information['father_phone_number'])
+        mother_fullname = str(personal_information['mother_fullname'])
+        mother_phone_number = str(personal_information['mother_phone_number'])
+
+        father_fullname_btn = browser.find_element_by_name('nameParent1')
+        father_fullname_btn.clear()
+        father_fullname_btn.send_keys(father_fullname)
+        sleep(2)
+
+        father_phone_number_btn = browser.find_element_by_name('phoneParent1')
+        father_phone_number_btn.clear()
+        father_phone_number_btn.send_keys(father_phone_number)
+        sleep(2)
+
+        mother_fullname_btn = browser.find_element_by_name('nameParent2')
+        mother_fullname_btn.clear()
+        mother_fullname_btn.send_keys(mother_fullname)
+        sleep(2)
+
+        mother_phone_number_btn = browser.find_element_by_name('phoneParent2')
+        mother_phone_number_btn.clear()
+        mother_phone_number_btn.send_keys(mother_phone_number)
+        sleep(2)
+
+        btn_next = browser.find_element_by_id('boutNext')
+        btn_next.click()
+        sleep(60)
+
+
     # These operations have to be implemented in subclasses.
 
     # @abstractmethod
