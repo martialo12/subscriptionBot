@@ -39,6 +39,7 @@ class SysthagLib(ABC):
         self.pre_registration_step_3(browser)
         self.pre_registration_step_4(browser)
         self.pre_registration_step_5(browser, personal_information)
+        self.pre_registration_step_6(browser, personal_information)
 
     # These operations already have implementations.
 
@@ -187,9 +188,6 @@ class SysthagLib(ABC):
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
-        sleep(60)
-
-
 
     def pre_registration_step_6(self, browser, personal_information) -> None:
         logging.info('preregistration page STEP6: Parents...')
