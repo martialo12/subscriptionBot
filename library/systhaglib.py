@@ -37,6 +37,8 @@ class SysthagLib(ABC):
         self.pre_registration_step_1(browser)
         self.pre_registration_step_2(browser, personal_information)
         self.pre_registration_step_3(browser)
+        self.pre_registration_step_4(browser)
+        self.pre_registration_step_5(browser, personal_information)
 
     # These operations already have implementations.
 
@@ -140,7 +142,7 @@ class SysthagLib(ABC):
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
 
-    def pre_registration_step_3(self, browser):
+    def pre_registration_step_3(self, browser) -> None:
         logging.info('preregistration page STEP3: Education...')
         sleep(4)
 
@@ -158,7 +160,36 @@ class SysthagLib(ABC):
 
         btn_next = browser.find_element_by_id('boutNext')
         btn_next.click()
+
+    def pre_registration_step_4(self, browser) -> None:
+        logging.info('preregistration page STEP4: Academic profile of the candidate...')
+        sleep(4)
+
+        btn_next = browser.find_element_by_id('boutNext')
+        btn_next.click()
         sleep(60)
+
+    def pre_registration_step_5(self, browser, personal_information) -> None:
+        logging.info('preregistration page STEP5: Physical abilities...')
+        sleep(4)
+
+        tutor_name = str(personal_information['tutor_name'])
+        tutor_phone_number = str(personal_information['tutor_phone_number'])
+
+        tutor_name_btn = browser.find_element_by_name('nomPersAContactePourPB')
+        tutor_name_btn.clear()
+        tutor_name_btn.send_keys(tutor_name)
+        sleep(2)
+
+        tutor_phone_number_btn = browser.find_element_by_name('phonePersAContactePourPB')
+        tutor_phone_number_btn.clear()
+        tutor_phone_number_btn.send_keys(tutor_phone_number)
+        sleep(2)
+
+        btn_next = browser.find_element_by_id('boutNext')
+        btn_next.click()
+        sleep(60)
+
 
     # These operations have to be implemented in subclasses.
 
