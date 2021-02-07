@@ -14,7 +14,7 @@ You must  edit `config.yaml` with your personal information
 ### command for bot execution:
 
 ```bash
- $ python systhagbot.py  -e [execution mode] -o config/config.yaml
+ $ python systhagbot.py  -e [execution mode] -c config/config.yaml
 ```
 
 ### output file:
