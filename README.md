@@ -20,5 +20,8 @@ You must  edit `config.yaml` with your personal information
 ### output file:
 After suscessful execution you will see a credential json file in your download folder for further access to SYSTHAG portal
 
+### youtube tuto:
+✅https://bit.ly/36PwpCP
+
 ### Author
 `martialo dev`
